@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+
+        </div>
+        <div class="navigation">
+            <ul class="flex px-3">
+                <li class="px-3"><a href="{% url 'home'%}">Главная страница</a></li>
+                <li class="px-3"><a href="{% url 'products'%}">Продукты</a></li>
+                <li class="px-3"><a href="{% url 'info_herself'%}">О нас</a></li>
+                <li class="px-3"><a href="{% url 'image'%}">Картинка</a></li>
+            </ul>
+        </div>
+    </header>
+
+    {% block content %}
+
+    {% endblock %}
+    
+</body>
+</html>

@@ -29,7 +29,8 @@ urlpatterns = [
     path('practic_5/', include('practic_5.urls')),
     path('practic_6/', include('practic_6.urls')),
     path('practic_7/', include('practic_7.urls')),
-    path('practic_8/', include('practic_8.urls'))
+    path('practic_8/', include('practic_8.urls')),
+    path('practic_9/', include('practic_9.urls'))
 
 ]
 

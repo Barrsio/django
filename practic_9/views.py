@@ -1,8 +1,14 @@
 from django.shortcuts import render
-from .models import Image, Products
+from .models import Products, Image
 
 # Create your views here.
 
+def get_book_detail(request, pk):
+    book = Products.objects.get(pk=pk)
+    return render(request, 'detail_book.html', context={
+        'book': book
+    })
+    
 def image(request):
     books = Image.objects.all()
     return render(request, 'image.html', context= {

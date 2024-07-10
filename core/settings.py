@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'practic_5',
     'practic_6',
     'practic_7',
-    'practic_8'
+    'practic_8',
+    'practic_9'
 ]
 
 MIDDLEWARE = [

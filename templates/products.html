@@ -4,4 +4,11 @@
 
     Продукты
 
+    {% for i in Products%}
+    <img src="{{i.image.image.url}}" /s>
+    <h1><a href="{% url 'book_detail' i.id%}">{{i.name}}</a></h1>
+    <h1>{{i.price}}</h1>
+    {% endfor %}
+
+
 {% endblock  %}

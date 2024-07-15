@@ -4,10 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/htmx.org@2.0.0"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Document</title>
+    {% comment %} <script src="./tailwind.config.js"></script>
+    <script src="./main.js"></script> {% endcomment %}
+    <title>{{ title }}</title>
 </head>
-<body>
+<body class="font-Rubik-Mono-One">
 
     <header>
         <div class="logo">
@@ -21,11 +24,26 @@
                 <!-- <li class="px-3"><a href="{% url 'image'%}">Картинка</a></li> -->
             </ul>
         </div>
+        <div class="search">
+            <form
+            hx-trigger="input"
+            hx-get="{% url 'search'%}"
+            hx-swap="outerHTML"
+            hx-target="#found_products">
+                <input type="text" name="search">
+                <button type="submit">Поиск</button>
+            </form>
+        </div>
+        {% if request.user %}
+            {{ request.user.username}}
+        {% endif %}
     </header>
+    <div id="found_products">
+        
+        {% block content %}
 
-    {% block content %}
-
-    {% endblock %}
+        {% endblock %}
     
+    </div>    
 </body>
 </html>

@@ -14,6 +14,3 @@ urlpatterns = [
     path('image', image, name='image'),
     path('book/<int:pk>', get_book_detail, name='book_detail')
 ]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

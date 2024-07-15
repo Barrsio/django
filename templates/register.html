@@ -1,0 +1,16 @@
+<div class="reg_form">
+    <form method="POST" action="{% url 'register' %}"> 
+
+        {% csrf_token %}
+
+        {{form.username }}
+        {{form.email }}
+        {{form.password1}}
+        {{form.password2}}
+
+        {{form.errors}}
+
+        <button tupe="submit">Зарегистрироваться</button>
+
+    </form>
+</div>

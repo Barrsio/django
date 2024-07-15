@@ -1,0 +1,51 @@
+@keyframes OpenMenu {
+    from {
+        top: -100vh;
+    }
+    to {
+        top: 0;
+    }
+}
+
+#menu.openMenu {
+    animation: OpenMenu 0.7s linear forwards;
+}
+
+@keyframes CloseMenu {
+    from {
+        top: 0;
+    }
+    to {
+        top: -100vh;
+    }
+}
+
+#menu.closeMenu {
+    animation: CloseMenu 0.7s linear forwards;
+}
+
+@keyframes OpenBasket {
+    from {
+        right: -33vw;
+    }
+    to {
+        right: 0;
+    }
+}
+
+#basket.openBasket {
+    animation: OpenBasket 0.7s linear forwards;
+}
+
+@keyframes CloseBasket {
+    from {
+        right: 0;
+    }
+    to {
+        right: -33vw;
+    }
+}
+
+#basket.closeBasket {
+    animation: CloseBasket 0.7s linear forwards;
+}

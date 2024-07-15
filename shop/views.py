@@ -1,14 +1,11 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.http import HttpResponse, HttpRequest
 from .models import Product
-
+from .forms import RegisterForm, LoginForm
+from django.urls import reverse
+from django.db.models import Q
+from django.contrib.auth import login
 # Create your views here.
-
-def view_home(request):
-    return HttpResponse('<h1> Привет</h1>')
-
-def hello(request):
-    return HttpResponse('<h1> Hello World!!!</h1>')
 
 def base(request):
     return render(request, 'base.html')
@@ -26,5 +23,51 @@ def products(request):
 def info_herself(request):
     return render(request, 'info_herself.html')
 
+def basket(request):
+    return render(request, 'basket.html')
 
+def get_product_detail(request, pk):
+    product = Product.objects.get(pk=pk)
+    return render(request, 'detail_product.html', context={
+        'product': product
+    })
+      
+def register_form(request:HttpRequest):
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('home'))
+    else:
+        form = RegisterForm()   
+    return render(request, 'register.html', context={
+        'form':form
+    })
 
+def search_products(request):
+    if request.method == "GET":
+        search = request.GET['search']
+        products = Product.objects.filter(
+            Q(name__icontains = search) | Q(category__name__icontains = search))
+        print(products)
+        print(search)
+        return render(request, template_name='found_product.html', context={
+        'Products' : products,
+        'title' : 'Товары'
+        })
+    return redirect(reverse('home'))
+
+def login_user(request: HttpRequest):
+    if request.method == 'POST':
+        form = LoginForm(request, data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            if user is not None:
+                login(request, user)
+                return redirect('home')
+    else:
+        form = LoginForm()
+    return render(request, 'login.html', context={
+        'title': 'Авторизация',
+        'form': form
+        })

@@ -1,10 +1,6 @@
-{% extends "base.html" %}
-
-{% block content %}
-    
     <div class="flex flex-wrap justify-items-center">
         {% for i in Products%}
-        <a class="size-1/4 px-16 py-16" href="{% url 'book_detail' i.id%}">
+        <a class="px-16 py-16 size-1/4" href="{% url 'book_detail' i.id%}">
             <div>
                 <div class="px-8 py-8">
                     <img class="hover:scale-110" src="{{i.image.image.url}}" /s>
@@ -19,6 +15,3 @@
         </a>
         {% endfor %}
     </div>
-    
-
-{% endblock  %}

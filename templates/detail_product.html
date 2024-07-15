@@ -1,0 +1,15 @@
+{% extends "base.html"%}
+
+{% block content %}
+
+    <div class="size-1/4 px-16 py-16">
+        <img class="px-8 py-8" src="{{product.image.image.url}}" /s>
+        <h1>{{product.name.title}}</h1>
+        <div class="flex">
+            <h1 class="line-through text-current">{{product.price}}</h1>
+            <h1>-</h1>
+            <h1>{{product.sale_price}}</h1>
+        </div>
+    </div>
+
+{% endblock %}

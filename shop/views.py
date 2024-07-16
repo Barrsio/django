@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpRequest
-from .models import Product
+from .models import Product, Profile
 from .forms import RegisterForm, LoginForm
 from django.urls import reverse
 from django.db.models import Q
 from django.contrib.auth import login
-# Create your views here.
+from django.contrib.auth import logout
+
 
 def base(request):
     return render(request, 'base.html')
@@ -71,3 +73,18 @@ def login_user(request: HttpRequest):
         'title': 'Авторизация',
         'form': form
         })
+
+@login_required(login_url='login')
+def profile_view(request: HttpRequest):
+    print(request.user)
+    user = Profile.objects.select_related('user').get(user=request.user)
+    
+    return render(request, 'profile.html', context={
+        'user' : user
+    })
+    
+
+
+def logout_view(request):
+    logout(request)
+    return redirect(reverse('home'))
